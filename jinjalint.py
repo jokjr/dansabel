@@ -106,8 +106,8 @@ def __vt100_color(tag, text):
     RESET_COLOR = '\x1b[39;49;0m'
     prefix = RESET_COLOR
     if 'data' == tag: prefix= '\x1b[38:5:248:0m' # gray
-    elif 'variable_begin' == tag or 'variable_end' == tag: prefix = '\x1b[38:5:91;1m' # purple
-    elif 'operator' == tag: prefix = '\x1b[36;1m' # green
+    elif 'variable_begin' == tag or 'variable_end' == tag: prefix = '\x1b[38:5:91m\x1b[1m' # purple
+    elif 'operator' == tag: prefix = '\x1b[36m\x1b[1m' # green
     elif tag in (
             'block_begin',
             'block_end',
@@ -119,7 +119,7 @@ def __vt100_color(tag, text):
          'comment' == tag or \
          'comment_end' == tag: prefix = '\x1b[38:5:165m' # magenta/pink
     elif tag in ('integer','IF'): prefix = '\x1b[38:5:108;1m' # white fg green bg
-    elif tag in ('name', 'FOR'): prefix = '\x1b[38:5:10:20;1m' # green (no bg)
+    elif tag in ('name', 'FOR'): prefix = '\x1b[38:5:10m\x1b[1m' # green (no bg)
     elif 'string' == tag: prefix = '\x1b[38:5:197:0;1m' # red-ish
     elif 'whitespace' == tag or \
        'RESET' == tag: prefix = RESET_COLOR
