@@ -105,22 +105,22 @@ def __vt100_color(tag, text):
     '''Wrap (text) in VT100 escape codes coloring according to (tag). Uses the xterm-256 color palette.'''
     RESET_COLOR = '\x1b[39;49;0m'
     prefix = RESET_COLOR
-    if 'data' == tag: prefix= '\x1b[38:5:248:0m' # gray
-    elif 'variable_begin' == tag or 'variable_end' == tag: prefix = '\x1b[38:5:91m\x1b[1m' # purple
+    if 'data' == tag: prefix= '\x1b[0m\x1b[38;5;248m' # gray
+    elif 'variable_begin' == tag or 'variable_end' == tag: prefix = '\x1b[38;5;91m\x1b[1m' # purple
     elif 'operator' == tag: prefix = '\x1b[36m\x1b[1m' # green
     elif tag in (
             'block_begin',
             'block_end',
             'raw_begin',
-            'raw_end'): prefix = '\x1b[38:5:208m\x1b[1m' # orange
-    elif 'LEX_ERROR' == tag: prefix = '\x1b[38:5:217;1;41m'
+            'raw_end'): prefix = '\x1b[38;5;208m\x1b[1m' # orange
+    elif 'LEX_ERROR' == tag: prefix = '\x1b[38;5;217m\x1b[1;41m'
     elif 'BOLD' == tag: prefix = '\x1b[1m'
     elif 'comment_begin' == tag or \
          'comment' == tag or \
          'comment_end' == tag: prefix = '\x1b[38;5;165m' # magenta/pink
-    elif tag in ('integer','IF'): prefix = '\x1b[38:5:108m\x1b[1m' # white fg green bg
-    elif tag in ('name', 'FOR'): prefix = '\x1b[38:5:10m\x1b[1m' # green (no bg)
-    elif 'string' == tag: prefix = '\x1b[38:5:197m\x1b[1m' # red-ish
+    elif tag in ('integer','IF'): prefix = '\x1b[38;5;108m\x1b[1m' # white fg green bg
+    elif tag in ('name', 'FOR'): prefix = '\x1b[38;5;10m\x1b[1m' # green (no bg)
+    elif 'string' == tag: prefix = '\x1b[38;5;197m\x1b[1m' # red-ish
     elif 'whitespace' == tag or \
        'RESET' == tag: prefix = RESET_COLOR
     elif 'ERROR' == tag: prefix ='\x1b[38;5;15m\x1b[1;41m' # white fg red bg
