@@ -113,7 +113,7 @@ def __vt100_color(tag, text):
             'block_end',
             'raw_begin',
             'raw_end'): prefix = '\x1b[38;5;208m\x1b[1m' # orange
-    elif 'LEX_ERROR' == tag: prefix = '\x1b[38;5;217m\x1b[1;41m'
+    elif 'LEX_ERROR' == tag: prefix = '\x1b[38;5;231m\x1b[1;41m'
     elif 'BOLD' == tag: prefix = '\x1b[1m'
     elif 'comment_begin' == tag or \
          'comment' == tag or \
