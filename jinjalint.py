@@ -47,6 +47,7 @@ try:
 except: # It's not going to be pretty, but OK:
     OUT_COLS = 72
 
+USE_COLORS = USE_COLORS and (os.getenv('NO_COLOR', None) is not None)
 
 # we will use the same immutable jinja environment instead of instantiating a new one
 # for each string field in each YAML file, for better performance.
@@ -897,6 +898,8 @@ if '__main__' == __name__:
 
   List tags encountered in YAML files:
   jinjalint.py -q --tags testcases/good/*.yml
+
+  Set environment variable NO_COLOR to disable colored output.
 ''')
     a_parser.add_argument('FILE', nargs='+')
     a_parser.add_argument('-C', '--context-lines', type=int, help="Number of context lines controls LAST_THRESHOLD")
