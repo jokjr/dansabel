@@ -112,18 +112,18 @@ def __vt100_color(tag, text):
             'block_begin',
             'block_end',
             'raw_begin',
-            'raw_end'): prefix = '\x1b[38:5:208;1m' # orange
+            'raw_end'): prefix = '\x1b[38:5:208m\x1b[1m' # orange
     elif 'LEX_ERROR' == tag: prefix = '\x1b[38:5:217;1;41m'
     elif 'BOLD' == tag: prefix = '\x1b[1m'
     elif 'comment_begin' == tag or \
          'comment' == tag or \
-         'comment_end' == tag: prefix = '\x1b[38:5:165m' # magenta/pink
-    elif tag in ('integer','IF'): prefix = '\x1b[38:5:108;1m' # white fg green bg
+         'comment_end' == tag: prefix = '\x1b[38;5;165m' # magenta/pink
+    elif tag in ('integer','IF'): prefix = '\x1b[38:5:108m\x1b[1m' # white fg green bg
     elif tag in ('name', 'FOR'): prefix = '\x1b[38:5:10m\x1b[1m' # green (no bg)
-    elif 'string' == tag: prefix = '\x1b[38:5:197:0;1m' # red-ish
+    elif 'string' == tag: prefix = '\x1b[38:5:197m\x1b[1m' # red-ish
     elif 'whitespace' == tag or \
        'RESET' == tag: prefix = RESET_COLOR
-    elif 'ERROR' == tag: prefix ='\x1b[38:5:15;1;41m' # white fg red bg
+    elif 'ERROR' == tag: prefix ='\x1b[38;5;15m\x1b[1;41m' # white fg red bg
     elif 'NOT_CONSUMED' == tag:
         prefix = '\x1b[37;1;41m' # white fg red bg for the first two characters
         prefix += text[:2] + color_text('data', text[2:])
